@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "multimachine:multitable" },
+        "facing=south": { "model": "multimachine:multitable", "y": 180 },
+        "facing=west":  { "model": "multimachine:multitable", "y": 270 },
+        "facing=east":  { "model": "multimachine:multitable", "y": 90 }
+    }
+}

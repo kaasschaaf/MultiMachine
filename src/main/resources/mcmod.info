@@ -1,0 +1,12 @@
+[{
+  "modid": "multimachine",
+  "name": "Multi Machine",
+  "description": "A mod that adds machines and tools.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "authorList": ["kaasschaaf"],
+  "credits": "I'd like to thank direwolf20 for showing how fun modded minecraft is!",
+  "dependencies": [
+    "mod_MinecraftForge"
+  ]
+}]

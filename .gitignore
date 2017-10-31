@@ -20,9 +20,6 @@ gradle/
 gradlew
 gradlew.bat
 .idea/
-LICENSE
-README.md
 forge/
 out/
 run/
-src/

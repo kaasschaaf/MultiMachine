@@ -1,0 +1,12 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "particle": "blocks/crafting_table_front",
+        "up": "blocks/crafting_table_top",
+        "north": "multimachine:blocks/multitable_front",
+        "east": "blocks/crafting_table_side",
+        "south": "blocks/crafting_table_front",
+        "west": "blocks/crafting_table_side",
+        "down": "blocks/planks_oak"
+    }
+}
