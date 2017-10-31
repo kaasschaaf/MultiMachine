@@ -1,4 +1,4 @@
-package kaasschaaf.multiMachine.Network;
+package kaasschaaf.multiMachine.network;
 
 import io.netty.buffer.ByteBuf;
 import kaasschaaf.multiMachine.container.ContainerMultiTable;

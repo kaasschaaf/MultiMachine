@@ -1,6 +1,6 @@
 package kaasschaaf.multiMachine.tileentity;
 
-import kaasschaaf.multiMachine.Handler.ItemStackHandlerInput;
+import kaasschaaf.multiMachine.handler.ItemStackHandlerInput;
 import kaasschaaf.multiMachine.MultiMachine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +13,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 

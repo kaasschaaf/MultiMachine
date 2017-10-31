@@ -1,8 +1,8 @@
-package kaasschaaf.multiMachine.Handler;
+package kaasschaaf.multiMachine.handler;
 
 import kaasschaaf.multiMachine.MultiMachine;
-import kaasschaaf.multiMachine.Network.MessageMultiTableChangeTable;
-import kaasschaaf.multiMachine.Network.MessageMultiTableUpdateContainer;
+import kaasschaaf.multiMachine.network.MessageMultiTableChangeTable;
+import kaasschaaf.multiMachine.network.MessageMultiTableUpdateContainer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;

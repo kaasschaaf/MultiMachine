@@ -1,8 +1,8 @@
 package kaasschaaf.multiMachine.gui;
 
-import kaasschaaf.multiMachine.Handler.NetworkHandler;
+import kaasschaaf.multiMachine.handler.NetworkHandler;
 import kaasschaaf.multiMachine.MultiMachine;
-import kaasschaaf.multiMachine.Network.MessageMultiTableChangeTable;
+import kaasschaaf.multiMachine.network.MessageMultiTableChangeTable;
 import kaasschaaf.multiMachine.container.ContainerMultiTable;
 import kaasschaaf.multiMachine.tileentity.TileEntityMultiTable;
 import net.minecraft.client.gui.GuiButton;

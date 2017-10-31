@@ -1,9 +1,8 @@
 package kaasschaaf.multiMachine.common;
 
-import kaasschaaf.multiMachine.Handler.EventHandler;
-import kaasschaaf.multiMachine.Handler.NetworkHandler;
+import kaasschaaf.multiMachine.handler.EventHandler;
+import kaasschaaf.multiMachine.handler.NetworkHandler;
 import kaasschaaf.multiMachine.tileentity.TileEntities;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

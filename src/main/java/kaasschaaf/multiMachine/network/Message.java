@@ -1,4 +1,4 @@
-package kaasschaaf.multiMachine.Network;
+package kaasschaaf.multiMachine.network;
 
 import kaasschaaf.multiMachine.MultiMachine;
 import net.minecraft.entity.player.EntityPlayer;

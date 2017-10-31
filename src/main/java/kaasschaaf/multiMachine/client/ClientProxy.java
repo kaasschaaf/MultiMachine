@@ -2,7 +2,7 @@ package kaasschaaf.multiMachine.client;
 
 import kaasschaaf.multiMachine.MultiMachine;
 import kaasschaaf.multiMachine.common.CommonProxy;
-import kaasschaaf.multiMachine.Handler.GuiHandler;
+import kaasschaaf.multiMachine.handler.GuiHandler;
 import kaasschaaf.multiMachine.common.block.Blocks;
 import kaasschaaf.multiMachine.common.item.Items;
 import net.minecraft.client.Minecraft;

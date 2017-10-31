@@ -1,20 +1,16 @@
 package kaasschaaf.multiMachine.container;
 
-import kaasschaaf.multiMachine.Handler.NetworkHandler;
-import kaasschaaf.multiMachine.Network.MessageMultiTableUpdateContainer;
+import kaasschaaf.multiMachine.handler.NetworkHandler;
+import kaasschaaf.multiMachine.network.MessageMultiTableUpdateContainer;
 import kaasschaaf.multiMachine.tileentity.TileEntityMultiTable;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 

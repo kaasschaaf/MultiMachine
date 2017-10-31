@@ -1,8 +1,6 @@
-package kaasschaaf.multiMachine.Handler;
+package kaasschaaf.multiMachine.handler;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStackHandlerInput extends ItemStackHandler {

@@ -1,4 +1,4 @@
-package kaasschaaf.multiMachine.Handler;
+package kaasschaaf.multiMachine.handler;
 
 import kaasschaaf.multiMachine.container.ContainerMultiTable;
 import kaasschaaf.multiMachine.gui.GuiMultiTable;

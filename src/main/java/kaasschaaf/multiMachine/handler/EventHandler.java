@@ -1,11 +1,9 @@
-package kaasschaaf.multiMachine.Handler;
+package kaasschaaf.multiMachine.handler;
 
 import kaasschaaf.multiMachine.common.block.Blocks;
 import kaasschaaf.multiMachine.common.item.Items;
-import kaasschaaf.multiMachine.tileentity.TileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
