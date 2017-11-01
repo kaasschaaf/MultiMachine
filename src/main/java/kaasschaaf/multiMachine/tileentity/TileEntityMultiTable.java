@@ -3,6 +3,7 @@ package kaasschaaf.multiMachine.tileentity;
 import kaasschaaf.multiMachine.handler.ItemStackHandlerInput;
 import kaasschaaf.multiMachine.MultiMachine;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -20,25 +21,27 @@ import javax.annotation.Nullable;
 
 public class TileEntityMultiTable extends TileEntity implements ICapabilityProvider {
 
-    private ItemStackHandlerInput handlerAutomated;
-    private ItemStackHandler handler;
-    public final int maxTables = 4;
+    public static final int maxTables = 4;
+    public InventoryCrafting[] craftingInventories;
+    public int table = 0;
 
     public TileEntityMultiTable(){
-        this.handler = new ItemStackHandler(9 * maxTables);
-        this.handlerAutomated = new ItemStackHandlerInput(this.handler);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound){
         MultiMachine.proxy.getClientPlayer().sendMessage(new TextComponentString("got update"));
-        this.handler.deserializeNBT(compound.getCompoundTag("ItemStackHandler"));
+        this.table = compound.getInteger("table");
+        this.craftingInventories = (InventoryCrafting[]) compound.getString("craftingIventories");
         super.readFromNBT(compound);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        compound.setTag("ItemStackHandler", this.handler.serializeNBT());
+        MultiMachine.proxy.getClientPlayer().sendMessage(new TextComponentString(craftingInventories.toString()));
+        compound.setInteger("table", this.table);
+        compound.setString("craftingInventories", craftingInventories.toString());
+        compound.setByteArray();
         return super.writeToNBT(compound);
     }
 

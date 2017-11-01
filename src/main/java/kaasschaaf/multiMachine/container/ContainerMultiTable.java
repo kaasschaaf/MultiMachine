@@ -1,28 +1,22 @@
 package kaasschaaf.multiMachine.container;
 
-import kaasschaaf.multiMachine.handler.NetworkHandler;
-import kaasschaaf.multiMachine.network.MessageMultiTableUpdateContainer;
+import kaasschaaf.multiMachine.MultiMachine;
 import kaasschaaf.multiMachine.tileentity.TileEntityMultiTable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
 public class ContainerMultiTable extends Container {
 
-    public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public InventoryCraftResult craftResult = new InventoryCraftResult();
     private final World world;
     private final EntityPlayer player;
     private final BlockPos pos;
     private final TileEntityMultiTable te;
-    private final IItemHandler handler;
+    private InventoryCrafting[] craftingInventories;
     private int table;
 
     public ContainerMultiTable(InventoryPlayer playerInv, TileEntityMultiTable te, World worldIn, BlockPos posIn){
@@ -30,19 +24,21 @@ public class ContainerMultiTable extends Container {
         this.player = playerInv.player;
         this.pos = posIn;
         this.te = te;
-        this.table = 0;
+        this.craftingInventories = new InventoryCrafting[TileEntityMultiTable.maxTables];
+        for (int i = 0; i < TileEntityMultiTable.maxTables; i++) {
+            this.craftingInventories[i] = new InventoryCrafting(this, 3, 3);
+        }
+        te.craftingInventories = this.craftingInventories;
 
-        this.handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        this.table = te.table;
 
-        this.addSlotToContainer(new SlotCrafting(playerInv.player, this.craftMatrix, this.craftResult, 0, 124, 35));
-        //this.addSlotToContainer(new Slot(this.handler, 0, 124, 55));
+        this.addSlotToContainer(new SlotCrafting(playerInv.player, this.craftingInventories[table], this.craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 3; ++j)
             {
-                this.craftMatrix.setInventorySlotContents(j + i * 3,this.handler.getStackInSlot(j + i * 3 + this.table * 9));
-                this.addSlotToContainer(new Slot(this.craftMatrix, j + i * 3, 30 + j * 18, 17 + i * 18));
+                this.addSlotToContainer(new Slot(this.craftingInventories[table], j + i * 3, 30 + j * 18, 17 + i * 18));
             }
         }
 
@@ -61,45 +57,19 @@ public class ContainerMultiTable extends Container {
         }
     }
 
-    @Override
-    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-        ItemStack superb = super.slotClick(slotId, dragType, clickTypeIn, player);
-
-        if(!world.isRemote && slotId >= 1 && slotId <=9) {
-            player.sendMessage(new TextComponentString("save" + world.isRemote));
-            for (int i = 0; i < 9; ++i) {
-                this.handler.extractItem(i + this.table * 9, this.handler.getSlotLimit(i + this.table * 9), false);
-                this.handler.insertItem(i + this.table * 9, this.craftMatrix.getStackInSlot(i), false);
-            }
-            for (EntityPlayer entityPlayer : world.playerEntities) {
-                if (entityPlayer.openContainer == this)
-                    ((EntityPlayerMP) entityPlayer).connection.sendPacket(te.getUpdatePacket());
-            }
-            player.sendMessage(new TextComponentString(this.handler.getStackInSlot(0 + this.table * 9).getDisplayName()));
-            NetworkHandler.sendToAll(new MessageMultiTableUpdateContainer());
-        }
-        return superb;
-    }
-
-    public void updateContainer(){
-        player.sendMessage(new TextComponentString("update" + world.isRemote));
-
-        for (int i = 0; i < 9; ++i) {
-            this.craftMatrix.setInventorySlotContents(i,this.handler.getStackInSlot(i + this.table * 9));
-        }
-        player.sendMessage(new TextComponentString(this.craftMatrix.getStackInSlot(0).getDisplayName()));
-    }
-
     public void changeTable(int newTable){
-        for (int i = 0; i < 9; ++i){
-            this.craftMatrix.setInventorySlotContents(i,this.handler.getStackInSlot(i + newTable * 9));
+        for (int i = 0; i < 3; ++i)
+        {
+            for (int j = 0; j < 3; ++j) {
+                inventorySlots.set(j + i * 3 + 1, new Slot(this.craftingInventories[newTable], j + i * 3, 30 + j * 18, 17 + i * 18));
+            }
         }
         this.table = newTable;
     }
 
     public void onCraftMatrixChanged(IInventory inventoryIn)
     {
-        this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
+        this.slotChangedCraftingGrid(this.world, this.player, this.craftingInventories[table], this.craftResult);
     }
 
     @Override
@@ -168,12 +138,6 @@ public class ContainerMultiTable extends Container {
                 playerIn.dropItem(itemstack2, false);
             }
         }
-
-        for (int i = 0; i < 9; ++i) {
-            this.handler.extractItem(i + this.table * 9, this.handler.getSlotLimit(i + this.table * 9), false);
-            this.handler.insertItem(i + this.table * 9, this.craftMatrix.getStackInSlot(i), false);
-        }
-        NetworkHandler.sendToAll(new MessageMultiTableUpdateContainer());
 
         return itemstack;
     }
